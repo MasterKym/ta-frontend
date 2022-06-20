@@ -1,8 +1,10 @@
 import { Button, Input } from "components";
 import { useEffect, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
-import { validUsername, validPassword } from "utils/inputValidation";
+import { validUsername, validPassword } from "utils/client/inputValidation";
 import { useNavigate } from "react-router-dom";
+import submitLogin from "utils/api/submitLogin";
+import getProfile from "utils/api/getProfile";
 
 function LoginForm() {
   // react router navigation
@@ -31,37 +33,17 @@ function LoginForm() {
     password: null,
   });
 
-  // submit form handler
-  const submitForm = () => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch("http://localhost:4000/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-        if (res.status === 200) {
-          resolve("success");
-        } else {
-          // failed, reject promise
-          reject("Invalid username or password");
-        }
-      } catch (err) {
-        reject("Server error. Please try again later!");
-      }
-    });
-  };
-
   // handle on submit
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
+    // setting global error to false
+    setError({ ...error, global: null });
+
+    // setting submitting to true
     setSubmitting(true);
 
-    if (error.username || error.password || error.global)
-      return setSubmitting(false);
+    if (error.username || error.password) return setSubmitting(false);
 
-    submitForm()
+    submitLogin(formData)
       .then(() => {
         setSubmitting(false);
         navigate("/settings");
@@ -75,6 +57,17 @@ function LoginForm() {
       });
   };
 
+  // on component mount, we will check if the user is already logged in
+  useEffect(() => {
+    const success = () => {
+      // it means the user is already logged in, redirect to /settings!
+      navigate("/settings");
+    };
+
+    getProfile(success, () => {});
+  }, []);
+
+  // on formData change
   useEffect(() => {
     // setting global error to null on input change
     setError({ ...error, global: null });
