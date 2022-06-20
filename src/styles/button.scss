@@ -1,0 +1,114 @@
+button.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	outline: none;
+	border: 1px solid transparent;
+	transition: all 400ms var(--transition)!important;
+	color: var(--gray-900);
+	cursor: pointer;
+	border-radius: var(--border-radius);
+	img, span {
+		margin-left: 8px;
+	}
+	svg {
+		line-height: 0;
+	}
+	&.size {
+		&-sm {
+			padding: 8px 28px 6px;
+			font-size: 0.825rem;
+			font-weight: 600;
+			svg {
+				font-size: 1.15rem;
+			}
+		}
+		&-md {
+			padding: 8px 34px;
+			font-size: 0.925rem;
+			font-weight: 700;
+			svg {
+				font-size: 1.45rem;
+			}
+		}
+		&-lg {
+			padding: 10px 38px;
+			font-size: 1.025rem;
+			font-weight: 800;
+			svg {
+				font-size: 1.65rem;
+			}
+		}
+	}
+	@supports (column-gap: 0.5rem) {
+		img, span {
+			margin: 0;
+		}
+		column-gap: 0.5rem;
+	}
+	img {
+		max-height: 20px!important;
+		max-width: 20px!important;
+	}
+	span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.35rem;
+		transition: all 800ms var(--transition)!important;
+	}
+	&:hover span {
+		transform: translateX(5px);
+		&.back {
+			transform: translateX(-5px);
+		}
+	}
+	&[disabled] {
+		opacity: 0.4;
+		cursor: default;
+	}
+	&.main {
+		background-color: var(--main);
+		color: var(--gray-50);
+		box-shadow: 0 10px 25px var(--main-opacity-2);
+		&:hover {
+			background-color: var(--main-dark-50);
+			box-shadow: 0 5px 25px var(--main-opacity-2);
+		}
+		&:active {
+			background-color: var(--main-dark-100);
+		}
+	}
+	&.main-secondary {
+		font-weight: 600;
+		background-color: #fff;
+		color: var(--main);
+		background-color: var(--main-light-100);
+		border: 1px solid var(--main-light-500);
+		&:hover {
+			border: 1px solid var(--main);
+			background-color: var(--main-light-200);
+		}
+	}
+	&.dark {
+		background-color: var(--gray-800);
+		color: #fff;
+		box-shadow: 0 10px 25px var(--dark-opacity-1);
+		&:hover {
+			background-color: var(--gray-900);
+			box-shadow: 0 5px 25px var(--dark-opacity-1);
+		}
+	}
+	&.dark-secondary {
+		font-weight: 600;
+		background-color: #fff;
+		color: var(--gray-900);
+		background-color: var(--gray-100);
+		border: 1px solid var(--gray-500);
+		&:hover {
+			border: 1px solid var(--gray-900);
+			background-color: var(--gray-200);
+		}
+	}
+}

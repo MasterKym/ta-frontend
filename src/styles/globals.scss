@@ -1,0 +1,63 @@
+@import "breakpoints";
+@import "vars";
+
+// Nunito Sans font
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+// Poppins font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*, *::after, *::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	font-family: 'Nunito Sans', Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+html {
+	font-size: 100%;
+}
+
+body {
+	position: relative;
+	overflow-x: hidden;
+	background-color: #fff;
+	color: var(--gray-900);
+}
+
+body, #root, .wrapper {
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+}
+
+.hide-for-mobile {
+	// Although this is  called hide-for-mobile
+	// It hides stuff in both mobile and tablet
+	// views.
+	@include notDesktop {
+		display: none!important;
+	}
+}
+
+.hide-for-desktop {
+	@include desktop {
+		display: none!important;
+	}
+}
+
+img {
+	pointer-events: none;
+	&.covered-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+@import "flex";
+@import "position";
+@import "nprogress";
+@import "button";
+@import "input";
