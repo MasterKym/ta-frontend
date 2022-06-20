@@ -4,6 +4,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { validUsername, validPassword } from "utils/client/inputValidation";
 import { useNavigate } from "react-router-dom";
 import submitLogin from "utils/api/submitLogin";
+import getProfile from "utils/api/getProfile";
 
 function LoginForm() {
   // react router navigation
@@ -53,6 +54,17 @@ function LoginForm() {
       });
   };
 
+  // on component mount, we will check if the user is already logged in
+  useEffect(() => {
+    const success = () => {
+      // it means the user is already logged in, redirect to /settings!
+      navigate("/settings");
+    };
+
+    getProfile(success, () => {});
+  }, []);
+
+  // on formData change
   useEffect(() => {
     // setting global error to null on input change
     setError({ ...error, global: null });
