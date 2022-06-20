@@ -1,7 +1,7 @@
 import { Button, Input } from "components";
 import { useEffect, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
-import { validUsername, validPassword } from "utils/inputValidation";
+import { validUsername, validPassword } from "utils/client/inputValidation";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
