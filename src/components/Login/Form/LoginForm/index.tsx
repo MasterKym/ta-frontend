@@ -34,11 +34,14 @@ function LoginForm() {
   });
 
   // handle on submit
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
+    // setting global error to false
+    setError({ ...error, global: null });
+
+    // setting submitting to true
     setSubmitting(true);
 
-    if (error.username || error.password || error.global)
-      return setSubmitting(false);
+    if (error.username || error.password) return setSubmitting(false);
 
     submitLogin(formData)
       .then(() => {
