@@ -2,6 +2,7 @@
     padding: 12px 42px 12px;
     border-radius: 16px;
     background: transparent;
+    cursor: pointer;
 
     &.active {
         background-color: var(--main-light-200);

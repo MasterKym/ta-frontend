@@ -1,11 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import getProfile from 'utils/api/getProfile';
+import { MenuItemEnum, MenuItemsData } from './DATA';
+import MenuItem from './Menu/MenuItem';
 import './styles.scss';
 
 function Settings() {
     // react router navigate
     const navigate = useNavigate();
+
+    const [selectedMenuOption, setSelectedMenuOption] = useState<MenuItemEnum>(
+        MenuItemEnum.Account,
+    );
 
     // on component mount
     useEffect(() => {
@@ -24,12 +30,21 @@ function Settings() {
         getProfile(success, failure);
     }, []);
 
+    const menuItems = MenuItemsData.map(({ title }) => (
+        <MenuItem
+            isActive={selectedMenuOption === title}
+            title={title}
+            onPress={() => setSelectedMenuOption(title)}
+        />
+    ));
+
     return (
         // YOUR CODE SHOULD BE HERE!
         <div className='Settings flex items-center justify-center'>
             <div className='flex'>
                 <div className='Settings-Menu flex flex-col '>
                     <span className='Settings-Menu-title'>Settings</span>
+                    {menuItems}
                 </div>
             </div>
         </div>

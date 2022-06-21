@@ -1,18 +1,19 @@
 import React from 'react';
+import './styles.scss';
 
 interface MenuItemProps {
     isActive: boolean;
     title: string;
-    onPress: (title: string) => void;
+    onPress: () => void;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ isActive, onPress, title }) => {
     return (
         <div
-            onClick={() => {}}
+            onClick={onPress}
             className={`Menu-Item w-full ${isActive ? 'active' : ''}`}
         >
-            <span className='Menu-Item-tile'>{title}</span>
+            <span className='Menu-Item-text'>{title}</span>
         </div>
     );
 };
