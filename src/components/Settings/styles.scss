@@ -1,0 +1,17 @@
+.Settings {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.Settings-Menu {
+    margin-top: 30px;
+    width: 287px;
+    min-width: 287px;
+    max-width: 287px;
+
+    &-title {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 30px;
+    }
+}
