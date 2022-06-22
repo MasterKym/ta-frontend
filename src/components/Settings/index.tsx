@@ -1,13 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getProfile from 'utils/api/getProfile';
+import getProfile, { IProfile } from 'utils/api/getProfile';
 import { MenuItemEnum, MenuItemsData } from './DATA';
+import AccountForm from './Form/AccountForm';
 import MenuItem from './Menu/MenuItem';
 import './styles.scss';
+
+// Profile Inputs Inputs
+export interface IProfileInputs {
+    email: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    dateOfBirth: string;
+}
+
+// Profile Form Initial Values
+const initProfileData: IProfileInputs = {
+    email: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    dateOfBirth: '',
+};
 
 function Settings() {
     // react router navigate
     const navigate = useNavigate();
+
+    // profile State
+    const [profileFormData, setProfileFormData] =
+        useState<IProfileInputs>(initProfileData);
 
     const [selectedMenuOption, setSelectedMenuOption] = useState<MenuItemEnum>(
         MenuItemEnum.Account,
@@ -16,8 +39,8 @@ function Settings() {
     // on component mount
     useEffect(() => {
         // on success
-        const success = () => {
-            console.log('you are successfully logged in');
+        const success = (profile: IProfile) => {
+            setProfileFormData(profile);
         };
 
         // on failure
@@ -46,6 +69,7 @@ function Settings() {
                     <span className='Settings-Menu-title'>Settings</span>
                     {menuItems}
                 </div>
+                <AccountForm formValues={profileFormData} />
             </div>
         </div>
     );

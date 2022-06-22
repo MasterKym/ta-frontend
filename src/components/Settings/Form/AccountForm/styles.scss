@@ -1,0 +1,19 @@
+.Account-Form {
+    padding: 48px 56px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 28px;
+    width: 768px;
+}
+
+.Form-Header {
+    margin-bottom: 50px;
+    &-title {
+        font-weight: 800;
+        font-size: 48px;
+    }
+}
+
+.Input-Space {
+    margin-bottom: 16px;
+}
