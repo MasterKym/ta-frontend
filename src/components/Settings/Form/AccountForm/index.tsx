@@ -1,5 +1,7 @@
 import { Button, Input } from 'components';
 import { IProfileInputs } from 'components/Settings';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { validateLength, validEmail } from 'utils/client/inputValidation';
 import './styles.scss';
 
@@ -8,47 +10,106 @@ interface AccountFormProps {
 }
 
 const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
+    // react router navigation
+    const navigate = useNavigate();
+
+    // submitting state
+    const [submitting, setSubmitting] = useState(false);
+
+    // formData state
+    const [formData, setFormData] = useState<IProfileInputs>(formValues);
+
+    // error state
+    const [error, setError] = useState<{
+        global: string | null;
+        email: string | null;
+        firstName: string | null;
+        lastName: string | null;
+        phone: string | null;
+        dateOfBirth: string | null;
+    }>({
+        global: null,
+        email: null,
+        firstName: null,
+        lastName: null,
+        phone: null,
+        dateOfBirth: null,
+    });
+
+    // handle on submit
+    const handleSubmit = () => {
+        // setting global error to false
+        setError({ ...error, global: null });
+
+        // setting submitting to true
+        setSubmitting(true);
+
+        if (
+            error.dateOfBirth ||
+            error.email ||
+            error.firstName ||
+            error.lastName ||
+            error.phone
+        )
+            return setSubmitting(false);
+
+        // TODO add request here!!
+    };
+
+    // on formData change
+    useEffect(() => {
+        // setting global error to null on input change
+        setError({ ...error, global: null });
+    }, [formData]);
     return (
         <div className='Account-Form flex flex-col'>
-            <div className='Form-Header flex items-center justify-between'>
-                <span className='Form-Header-title'>Account</span>
-                <Button type='main'>Save</Button>
+            <div className='Account-Form-header'>
+                <span className='Account-Form-header-title'>Account</span>
             </div>
-            <div className='flex col-gap Input-Space'>
-                <Input
-                    type='text'
-                    label='First Name'
-                    placeholder='Enter First Name'
-                    name='firstName'
-                />
-                <Input
-                    type='text'
-                    label='First Name'
-                    placeholder='Enter First Name'
-                    name='lastName'
-                />
-            </div>
-            <Input
-                className='Input-Space'
-                type='email'
-                label='Email'
-                placeholder='Enter First Name'
-                name='firstName'
-            />
-            <Input
-                className='Input-Space'
-                type='date'
-                label='Date of birth'
-                placeholder='Enter Date of birth'
-                name='firstName'
-            />
-            <div className='Input-Space w-full'>
-                <Input
-                    className='w-full'
-                    type='phone'
-                    label='Phone'
-                    name='firstName'
-                />
+            <div className='Account-Form-form flex flex-col'>
+                {error.global && (
+                    <div className='Account-Form-form-error'>
+                        <p>{error.global}</p>
+                    </div>
+                )}
+                {form.map((field, i) => (
+                    <Input
+                        key={i}
+                        type={field.type}
+                        HTMLtype={field.HTMLtype}
+                        name={field.name}
+                        label={field.label}
+                        required={field.required}
+                        placeholder={field.placeholder}
+                        error={error[field.name as keyof typeof error]}
+                        value={formData[field.name as keyof typeof formData]}
+                        onChange={(newValue: string | boolean) => {
+                            // setting new value
+                            setFormData({
+                                ...formData,
+                                [field.name]: newValue,
+                            });
+
+                            // checking if value is valid
+                            let notValid = field.validation(newValue as string);
+
+                            if (notValid) {
+                                setError({ ...error, [field.name]: notValid });
+                            } else {
+                                setError({ ...error, [field.name]: null });
+                            }
+                        }}
+                    />
+                ))}
+                <div>
+                    <Button
+                        type='main'
+                        disabled={submitting}
+                        onClick={handleSubmit}
+                    >
+                        {!submitting ? 'Save' : 'Submitting...'}
+                    </Button>
+                </div>
             </div>
         </div>
     );
@@ -57,14 +118,14 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
 const form = [
     {
         label: 'FirstName:',
-        type: 'firstname',
-        HTMLtype: 'firstname',
-        name: 'firstname',
+        HTMLtype: 'text',
+        name: 'firstName',
+        type: 'firstName',
         placeholder: 'Enter your firstName',
         required: true,
         validation: (value: string) => {
             // if firstname is empty
-            if (!value.length) return 'Email is required';
+            if (!value.length) return 'FirstName is required';
 
             // if firstname is invalid
             if (!validateLength(value, 2, 20))
@@ -76,10 +137,10 @@ const form = [
     },
     {
         label: 'LastName:',
-        type: 'lastname',
-        HTMLtype: 'lastname',
-        name: 'firstname',
-        placeholder: 'Enter your lastname',
+        HTMLtype: 'text',
+        name: 'lastName',
+        type: 'lastName',
+        placeholder: 'Enter your lastName',
         required: true,
         validation: (value: string) => {
             // if lastname is empty
@@ -95,9 +156,9 @@ const form = [
     },
     {
         label: 'Email:',
-        type: 'email',
         HTMLtype: 'email',
         name: 'email',
+        type: 'email',
         placeholder: 'Enter your email',
         required: true,
         validation: (value: string) => {
@@ -115,7 +176,7 @@ const form = [
         label: 'Date of birth:',
         HTMLtype: 'date',
         type: 'date',
-        name: 'date_of_birth',
+        name: 'dateOfBirth',
         placeholder: 'Choose birth date',
         required: true,
         validation: (value: string) => {
@@ -135,7 +196,7 @@ const form = [
         required: true,
         validation: (value: string) => {
             // if phone number is empty
-            if (!value.length) return 'Date of birth is required';
+            if (!value.length) return 'phone is required';
 
             // if valid
             return null;
