@@ -3,6 +3,7 @@ import { IProfileInputs } from 'components/Settings';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import profileApi from 'utils/api/profile';
 import { validateLength, validEmail } from 'utils/client/inputValidation';
 import './styles.scss';
 
@@ -15,6 +16,9 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
     const navigate = useNavigate();
     // submitting state
     const [submitting, setSubmitting] = useState(false);
+
+    // Show Success Message After updating profile
+    const [isSuccess, setIsSuccess] = useState(false);
 
     // formData state
     const [formData, setFormData] = useState<IProfileInputs>({
@@ -60,13 +64,28 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
         )
             return setSubmitting(false);
 
-        console.log(formData);
+        profileApi.updateProfile(
+            formData,
+            () => {
+                setSubmitting(false);
+                setIsSuccess(true);
+                setTimeout(() => {
+                    setIsSuccess(false);
+                }, 3000);
+            },
+            (err) => {
+                setSubmitting(false);
+                setError({
+                    ...error,
+                    global: err,
+                });
+            },
+        );
 
         // TODO add request here!!
     };
 
     useEffect(() => {
-        console.log(formValues);
         setFormData({
             ...formValues,
             dateOfBirth: dayjs(formValues.dateOfBirth).format('YYYY-MM-DD'),
@@ -86,6 +105,11 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
                 {error.global && (
                     <div className='Account-Form-form-error'>
                         <p>{error.global}</p>
+                    </div>
+                )}
+                {isSuccess && (
+                    <div className='Account-Form-form-success'>
+                        <p>Your Profile Was updated successfully</p>
                     </div>
                 )}
                 {form.map((field, i) => (

@@ -36,5 +36,20 @@
                 font-weight: 700;
             }
         }
+        &-success {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0.5rem;
+            border-radius: var(--border-radius);
+            color: #fff;
+            background-color: var(--success);
+            p {
+                font-weight: 700;
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getProfile, { IProfile } from 'utils/api/getProfile';
+import profileApi, { IProfile } from 'utils/api/profile';
 import { MenuItemEnum, MenuItemsData } from './DATA';
 import AccountForm from './Form/AccountForm';
 import MenuItem from './Menu/MenuItem';
@@ -40,7 +40,9 @@ function Settings() {
     useEffect(() => {
         // on success
         const success = (profile: IProfile) => {
-            setProfileFormData(profile);
+            const { createdAt, updatedAt, id, username, role, ...formInputs } =
+                profile;
+            setProfileFormData(formInputs);
         };
 
         // on failure
@@ -50,7 +52,7 @@ function Settings() {
         };
 
         // get Profile
-        getProfile(success, failure);
+        profileApi.getProfile(success, failure);
     }, []);
 
     const menuItems = MenuItemsData.map(({ title }) => (

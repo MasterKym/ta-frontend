@@ -1,56 +1,56 @@
-@import "../../../styles/breakpoints.scss";
+@import '../../../styles/breakpoints.scss';
 
 .Login-form {
-	position: relative;
-	overflow: hidden;
-	padding: 4rem 1.25rem;
-	@include tablet {
-		padding: 1.75rem;
-		height: 100vh;
-		max-width: 35%;
-	}
-	@include desktop {
-		padding: 1.75rem 4rem;
-	}
-	&-ball {
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
-	&-wrapper {
-		&-header {
-			margin-bottom: 2rem;
-			img {
-				margin-bottom: 1rem;
-			}
-			h2 {
-				font-weight: 700;
-				color: var(--gray-600);
-			}
-			p {
-				font-weight: 500;
-				color: var(--gray-600);
-			}
-		}
-		&-form {
-			.input {
-				margin-bottom: 1.5rem;
-			}
-			&-error {
-				width: 100%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				text-align: center;
-				margin-bottom: 1.5rem;
-				padding: 1rem 0.5rem;
-				border-radius: var(--border-radius);
-				color: var(--main);
-				background-color: var(--main-light-200);
-					p {
-						font-weight: 700;
-					}
-			}
-		}
-	}
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 1.25rem;
+    @include tablet {
+        padding: 1.75rem;
+        height: 100vh;
+        max-width: 35%;
+    }
+    @include desktop {
+        padding: 1.75rem 4rem;
+    }
+    &-ball {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    &-wrapper {
+        &-header {
+            margin-bottom: 2rem;
+            img {
+                margin-bottom: 1rem;
+            }
+            h2 {
+                font-weight: 700;
+                color: var(--gray-600);
+            }
+            p {
+                font-weight: 500;
+                color: var(--gray-600);
+            }
+        }
+        &-form {
+            .input {
+                margin-bottom: 1.5rem;
+            }
+            &-error {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin-bottom: 1.5rem;
+                padding: 1rem 0.5rem;
+                border-radius: var(--border-radius);
+                color: var(--main);
+                background-color: var(--main-light-200);
+                p {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
 }
