@@ -1,0 +1,62 @@
+@import '../../../../styles/breakpoints.scss';
+
+.Account-Form {
+    padding: 48px 56px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 28px;
+    width: 768px;
+
+    @include mobile {
+        width: 100%;
+        padding: 22px;
+        border: none;
+        border-radius: 0;
+    }
+
+    &-header {
+        margin-bottom: 16px;
+        &-title {
+            font-weight: 800;
+            font-size: 48px;
+            @include mobile {
+                font-size: 32px;
+            }
+        }
+    }
+    &-form {
+        .input {
+            margin-bottom: 1.5rem;
+        }
+        &-error {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0.5rem;
+            border-radius: var(--border-radius);
+            color: var(--main);
+            background-color: var(--main-light-200);
+            p {
+                font-weight: 700;
+            }
+        }
+        &-success {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0.5rem;
+            border-radius: var(--border-radius);
+            color: #fff;
+            background-color: var(--success);
+            p {
+                font-weight: 700;
+            }
+        }
+    }
+}

@@ -1,0 +1,95 @@
+@import '../../styles/breakpoints.scss';
+
+.Settings {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    overflow: hidden;
+
+    @include mobile {
+        justify-content: start;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    &-Wrapper {
+        display: flex;
+
+        @include mobile {
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+        }
+
+        &-Menu {
+            margin-top: 80px;
+            width: 287px;
+
+            margin-right: 50px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            @include mobile {
+                width: 100%;
+                margin: 16px;
+                flex-direction: row;
+                align-items: center;
+                padding-right: 35px;
+                justify-content: space-between;
+            }
+
+            &-items {
+                display: flex;
+                flex-direction: column;
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            &-nav {
+                display: none;
+                @include mobile {
+                    display: block;
+                }
+                &-icon {
+                    cursor: pointer;
+                    &-img {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+                &-items {
+                    display: none;
+                    @include mobile {
+                        position: absolute;
+                        top: 75px;
+                        right: 20px;
+                        width: 95%;
+                        background-color: #fff;
+                        padding: 16px;
+                        border-radius: 8px;
+                        border: 1px solid var(--main);
+                        &.active {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+
+            &-title {
+                font-weight: 800;
+                font-size: 42px;
+                margin-bottom: 30px;
+                @include mobile {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
