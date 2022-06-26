@@ -72,6 +72,7 @@ function Input({
     options,
     minLength,
     maxLength,
+    defaultValue,
 }: {
     type: string;
     HTMLtype?: string;
@@ -89,7 +90,9 @@ function Input({
     options?: string[];
     minLength?: number;
     maxLength?: number;
+    defaultValue?: string;
 }) {
+    console.log('defaultValue', defaultValue);
     switch (type) {
         case 'textarea':
             return (

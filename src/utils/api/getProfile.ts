@@ -7,8 +7,6 @@ export interface IProfile {
     dateOfBirth: string;
     phone: string;
     role: 'USER' | 'ADMIN' | 'SUPER_ADMIN';
-    createdAt: '2022-06-21T19:19:05.357Z';
-    updatedAt: '2022-06-21T19:36:59.616Z';
 }
 
 const getProfile = async (

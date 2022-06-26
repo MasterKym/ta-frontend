@@ -16,7 +16,7 @@ export interface IProfileInputs {
 }
 
 // Profile Form Initial Values
-const initProfileData: IProfileInputs = {
+export const initProfileData: IProfileInputs = {
     email: '',
     firstName: '',
     lastName: '',

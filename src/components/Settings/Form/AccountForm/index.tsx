@@ -1,5 +1,6 @@
 import { Button, Input } from 'components';
 import { IProfileInputs } from 'components/Settings';
+import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validateLength, validEmail } from 'utils/client/inputValidation';
@@ -12,12 +13,17 @@ interface AccountFormProps {
 const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
     // react router navigation
     const navigate = useNavigate();
-
     // submitting state
     const [submitting, setSubmitting] = useState(false);
 
     // formData state
-    const [formData, setFormData] = useState<IProfileInputs>(formValues);
+    const [formData, setFormData] = useState<IProfileInputs>({
+        email: '',
+        firstName: '',
+        lastName: '',
+        phone: '',
+        dateOfBirth: '',
+    });
 
     // error state
     const [error, setError] = useState<{
@@ -43,6 +49,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
 
         // setting submitting to true
         setSubmitting(true);
+        console.log('Err', error);
 
         if (
             error.dateOfBirth ||
@@ -53,9 +60,18 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
         )
             return setSubmitting(false);
 
+        console.log(formData);
+
         // TODO add request here!!
     };
 
+    useEffect(() => {
+        console.log(formValues);
+        setFormData({
+            ...formValues,
+            dateOfBirth: dayjs(formValues.dateOfBirth).format('YYYY-MM-DD'),
+        });
+    }, [formValues]);
     // on formData change
     useEffect(() => {
         // setting global error to null on input change
@@ -84,6 +100,8 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
                         error={error[field.name as keyof typeof error]}
                         value={formData[field.name as keyof typeof formData]}
                         onChange={(newValue: string | boolean) => {
+                            console.log('FieldName', field.name);
+                            console.log('value', newValue);
                             // setting new value
                             setFormData({
                                 ...formData,
