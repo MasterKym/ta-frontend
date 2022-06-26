@@ -2,7 +2,6 @@ import { Button, Input } from 'components';
 import { IProfileInputs } from 'components/Settings';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import profileApi from 'utils/api/profile';
 import { validateLength, validEmail } from 'utils/client/inputValidation';
 import './styles.scss';
@@ -12,8 +11,6 @@ interface AccountFormProps {
 }
 
 const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
-    // react router navigation
-    const navigate = useNavigate();
     // submitting state
     const [submitting, setSubmitting] = useState(false);
 
@@ -81,8 +78,6 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
                 });
             },
         );
-
-        // TODO add request here!!
     };
 
     useEffect(() => {

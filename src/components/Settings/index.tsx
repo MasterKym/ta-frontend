@@ -62,6 +62,7 @@ function Settings() {
     // logout the user
     const logout = () => {
         logoutRequest(
+            // navigate lo login page after logout success
             () => navigate('/'),
             () => {},
         );
@@ -89,6 +90,7 @@ function Settings() {
                     <span className='Settings-Wrapper-Menu-title'>
                         Settings
                     </span>
+                    {}
                     <div className='Settings-Wrapper-Menu-nav'>
                         <span
                             onClick={() => setIsMenuOpen((prv) => !prv)}
@@ -98,11 +100,13 @@ function Settings() {
                                 <img
                                     src='/menu.svg'
                                     className='Settings-Wrapper-Menu-nav-icon-img'
+                                    alt='menu'
                                 />
                             ) : (
                                 <img
                                     src='/close.svg'
                                     className='Settings-Wrapper-Menu-nav-icon-img'
+                                    alt='close'
                                 />
                             )}
                         </span>
@@ -114,6 +118,7 @@ function Settings() {
                             {menuItems}
                         </div>
                     </div>
+                    {/* Menu items on desktop screen */}
                     <div className='Settings-Wrapper-Menu-items'>
                         {menuItems}
                     </div>
