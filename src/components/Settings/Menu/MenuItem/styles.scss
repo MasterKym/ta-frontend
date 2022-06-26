@@ -1,8 +1,15 @@
+@import '../../../../styles/breakpoints.scss';
+
 .Menu-Item {
     padding: 12px 42px 12px;
     border-radius: 16px;
     background: transparent;
     cursor: pointer;
+
+    @include mobile {
+        width: 100%;
+        padding: 12px 32px 12px;
+    }
 
     &.active {
         background-color: var(--main-light-200);
@@ -11,5 +18,8 @@
         color: var(--main);
         font-size: 22px;
         font-weight: 600;
+        @include mobile {
+            font-size: 16px;
+        }
     }
 }

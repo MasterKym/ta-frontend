@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logoutRequest from 'utils/api/logout';
 import profileApi, { IProfile } from 'utils/api/profile';
 import { MenuItemEnum, MenuItemsData } from './DATA';
 import AccountForm from './Form/AccountForm';
@@ -28,6 +29,9 @@ function Settings() {
     // react router navigate
     const navigate = useNavigate();
 
+    // Menu State
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     // profile State
     const [profileFormData, setProfileFormData] =
         useState<IProfileInputs>(initProfileData);
@@ -55,21 +59,64 @@ function Settings() {
         profileApi.getProfile(success, failure);
     }, []);
 
+    // logout the user
+    const logout = () => {
+        logoutRequest(
+            () => navigate('/'),
+            () => {},
+        );
+    };
+
+    // Menu Items List
     const menuItems = MenuItemsData.map(({ title }) => (
         <MenuItem
             isActive={selectedMenuOption === title}
             title={title}
-            onPress={() => setSelectedMenuOption(title)}
+            onPress={() => {
+                setSelectedMenuOption(title);
+                if (title === MenuItemEnum.Logout) {
+                    logout();
+                }
+            }}
         />
     ));
 
     return (
         // YOUR CODE SHOULD BE HERE!
-        <div className='Settings flex items-center justify-center'>
-            <div className='flex'>
-                <div className='Settings-Menu flex flex-col '>
-                    <span className='Settings-Menu-title'>Settings</span>
-                    {menuItems}
+        <div className='Settings'>
+            <div className='Settings-Wrapper'>
+                <div className='Settings-Wrapper-Menu'>
+                    <span className='Settings-Wrapper-Menu-title'>
+                        Settings
+                    </span>
+                    <div className='Settings-Wrapper-Menu-nav'>
+                        <span
+                            onClick={() => setIsMenuOpen((prv) => !prv)}
+                            className='Settings-Wrapper-Menu-nav-icon'
+                        >
+                            {!isMenuOpen ? (
+                                <img
+                                    src='/menu.svg'
+                                    className='Settings-Wrapper-Menu-nav-icon-img'
+                                />
+                            ) : (
+                                <img
+                                    src='/close.svg'
+                                    className='Settings-Wrapper-Menu-nav-icon-img'
+                                />
+                            )}
+                        </span>
+                        <div
+                            className={`Settings-Wrapper-Menu-nav-items ${
+                                isMenuOpen ? 'active' : ''
+                            }`}
+                        >
+                            {menuItems}
+                        </div>
+                    </div>
+                    <div className='Settings-Wrapper-Menu-items'>
+                        {menuItems}
+                    </div>
                 </div>
                 <AccountForm formValues={profileFormData} />
             </div>

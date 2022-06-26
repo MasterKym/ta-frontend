@@ -3,6 +3,7 @@ export enum MenuItemEnum {
     Notifications = 'Notifications',
     Security = 'Security',
     Delete_Account = 'Delete Account',
+    Logout = 'Logout',
 }
 
 export const MenuItemsData: { title: MenuItemEnum }[] = [
@@ -14,6 +15,9 @@ export const MenuItemsData: { title: MenuItemEnum }[] = [
     },
     {
         title: MenuItemEnum.Security,
+    },
+    {
+        title: MenuItemEnum.Logout,
     },
     {
         title: MenuItemEnum.Delete_Account,

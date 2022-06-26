@@ -112,7 +112,47 @@ const AccountForm: React.FC<AccountFormProps> = ({ formValues }) => {
                         <p>Your Profile Was updated successfully</p>
                     </div>
                 )}
-                {form.map((field, i) => (
+                <div className='flex col-gap'>
+                    {form.slice(0, 2).map((field, i) => (
+                        <Input
+                            key={i}
+                            type={field.type}
+                            HTMLtype={field.HTMLtype}
+                            name={field.name}
+                            label={field.label}
+                            required={field.required}
+                            placeholder={field.placeholder}
+                            error={error[field.name as keyof typeof error]}
+                            value={
+                                formData[field.name as keyof typeof formData]
+                            }
+                            onChange={(newValue: string | boolean) => {
+                                console.log('FieldName', field.name);
+                                console.log('value', newValue);
+                                // setting new value
+                                setFormData({
+                                    ...formData,
+                                    [field.name]: newValue,
+                                });
+
+                                // checking if value is valid
+                                let notValid = field.validation(
+                                    newValue as string,
+                                );
+
+                                if (notValid) {
+                                    setError({
+                                        ...error,
+                                        [field.name]: notValid,
+                                    });
+                                } else {
+                                    setError({ ...error, [field.name]: null });
+                                }
+                            }}
+                        />
+                    ))}
+                </div>
+                {form.slice(2).map((field, i) => (
                     <Input
                         key={i}
                         type={field.type}
