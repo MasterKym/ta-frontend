@@ -1,0 +1,55 @@
+@import '../../../styles/breakpoints.scss';
+
+.Settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  padding: 2rem;
+  align-self: stretch;
+  flex-grow: 1;
+  background-color: var(--main-light-50);
+  @include tablet {
+    gap: 2rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    width: 70%;
+    padding: 2rem 2.5rem;
+  }
+  &-title {
+    font-weight: 800;
+    font-size: 1.8rem;
+    @include tablet {
+      font-size: 2.2rem;
+    }
+  }
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-button {
+    padding: 0.3rem 2.6rem !important;
+    &-bottom {
+      display: flex;
+      flex-direction: row-reverse;
+      margin-top: auto;
+      @include tablet {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+    }
+  }
+  &-form {
+    display: flex;
+    gap: 1.3rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include tablet {
+      gap: 1rem;
+      & > .input:nth-child(-n + 2) {
+        width: 48%;
+      }
+    }
+  }
+}

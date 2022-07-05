@@ -19,3 +19,18 @@ export const validPassword = (password: string): boolean => {
   const re = /^(?=.*\d).{8,}$/;
   return re.test(password);
 };
+export const validEmail = (email: string): boolean => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
+export const validateLength = (
+  value: string,
+  min: number,
+  max: number
+): boolean => {
+  if (value.length < min || value.length > max) {
+    return false;
+  }
+  return true;
+};

@@ -1,0 +1,34 @@
+@import '../../../styles/breakpoints.scss';
+
+.Settings-nav {
+  display: flex;
+  font-size: large;
+  font-weight: 700;
+  margin-top: 1rem;
+  flex-direction: column;
+  &-active {
+    background-color: var(--main-light-200);
+  }
+  &-active:hover {
+    background-color: var(--main-light-200) !important;
+  }
+  
+  &-item {
+    cursor: pointer;
+    color: var(--main);
+    padding: 0.5rem 1.5rem;
+    border-radius: 14px;
+    text-decoration: none;
+    margin: 0.4rem 0;
+    transition: all 400ms var(--transition);
+  }
+  &-item:hover {
+    background-color: var(--main-light-100);
+  }
+}
+.Settings-show-mobile-menu {
+  background-color: var(--main-light-50);
+  padding: 1rem;
+  border: 1px solid var(--main-light-600);
+  border-radius: 8px;
+}
