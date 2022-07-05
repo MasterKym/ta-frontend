@@ -1,5 +1,5 @@
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/material.css";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/material.css';
 
 function Label({
   label,
@@ -91,14 +91,14 @@ function Input({
   maxLength?: number;
 }) {
   switch (type) {
-    case "textarea":
+    case 'textarea':
       return (
         <div className={`input w-full ${classNameContainer}`}>
           {label && (
             <Label label={label} subLabel={subLabel} required={required} />
           )}
           <textarea
-            className={`w-full ${className} ${error ? "error" : ""}`}
+            className={`w-full ${className} ${error ? 'error' : ''}`}
             placeholder={placeholder}
             required={required}
             name={name}
@@ -111,7 +111,7 @@ function Input({
           {error && <p className="input-error">{error}</p>}
         </div>
       );
-    case "select":
+    case 'select':
       return (
         <div className={`input w-full ${classNameContainer}`}>
           {label && (
@@ -120,7 +120,7 @@ function Input({
           <select
             value={value as string}
             className={`react-select w-full ${className} ${
-              error ? "error" : ""
+              error ? 'error' : ''
             }`}
             onChange={onChange ? (e) => onChange(e.target.value) : undefined}
             name={name}
@@ -138,14 +138,14 @@ function Input({
           {error && <p className="input-error">{error}</p>}
         </div>
       );
-    case "file":
+    case 'file':
       return (
         <div className={`input w-full ${classNameContainer}`}>
           {label && (
             <Label label={label} subLabel={subLabel} required={required} />
           )}
           <input
-            className={`w-full ${className} ${error ? "error" : ""}`}
+            className={`w-full ${className} ${error ? 'error' : ''}`}
             type="file"
             required={required}
             name={name}
@@ -155,11 +155,11 @@ function Input({
           {error && <p className="input-error">{error}</p>}
         </div>
       );
-    case "checkbox":
+    case 'checkbox':
       return (
         <div className={`input w-full ${classNameContainer}`}>
           <CheckBox
-            className={`w-full ${className} ${error ? "error" : ""}`}
+            className={`w-full ${className} ${error ? 'error' : ''}`}
             required={required}
             checked={value as boolean}
             onChange={onChange}
@@ -170,15 +170,17 @@ function Input({
           {error && <p className="input-error">{error}</p>}
         </div>
       );
-    case "phone":
+    case 'phone':
       return (
         <div className={`input w-full ${classNameContainer}`}>
           {label && (
             <Label label={label} subLabel={subLabel} required={required} />
           )}
           <PhoneInput
-            country={"ma"}
+            country={'ma'}
             placeholder={placeholder}
+            specialLabel=""
+            inputStyle={{ width: '100%', padding: '0.8rem 3.5rem' }}
             inputProps={{
               name: name,
               required: required,
@@ -192,14 +194,14 @@ function Input({
           {error && <p className="input-error">{error}</p>}
         </div>
       );
-    case "date":
+    case 'date':
       return (
         <div className={`input w-full ${classNameContainer}`}>
           {label && (
             <Label label={label} subLabel={subLabel} required={required} />
           )}
           <input
-            className={`w-full ${className} ${error ? "error" : ""}`}
+            className={`w-full ${className} ${error ? 'error' : ''}`}
             type="date"
             required={required}
             value={value as string}
@@ -215,16 +217,17 @@ function Input({
             <Label label={label} subLabel={subLabel} required={required} />
           )}
           <input
-            className={`w-full ${className} ${error ? "error" : ""}`}
+            className={`w-full ${className} ${error ? 'error' : ''}`}
             type={HTMLtype}
             placeholder={placeholder}
             required={required}
             name={name}
-            value={value as string}
+            //value={value as string}
             onChange={(e) => onChange && onChange(e.target.value)}
             disabled={disabled}
             minLength={minLength}
             maxLength={maxLength}
+            defaultValue={value as string}
           />
           {error && <p className="input-error">{error}</p>}
         </div>
