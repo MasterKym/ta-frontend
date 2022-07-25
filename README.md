@@ -9,4 +9,3 @@ When we want to work on a new feature (which is the case for you), we start by c
 
 ## Usage
 Just start the app, and you're good to go. But don't forget to start the backend too.
-3alaaaaaaaaaaaaaam
