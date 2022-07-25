@@ -1,25 +1,31 @@
 import { Button, Input } from "components";
 import { useEffect, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
-import { validUsername, validPassword } from "utils/client/inputValidation";
+import { loginForm, signupForm } from "./forms";
 import { useNavigate } from "react-router-dom";
 import submitLogin from "utils/api/submitLogin";
 import getProfile from "utils/api/getProfile";
+import { UserModel } from "Models/UserModal";
 
 function LoginForm() {
   // react router navigation
   const navigate = useNavigate();
 
+  //signup/login page state
+  const [Form, setForm] = useState<any>(loginForm)
+  const [loginPage, setloginPage] = useState(true)
+
   // submitting state
   const [submitting, setSubmitting] = useState(false);
 
   // formData state
-  const [formData, setFormData] = useState<{
-    username: string;
-    password: string;
-  }>({
-    username: "",
-    password: "",
+  const [formData, setFormData] = useState<UserModel>({
+    username:"",
+    firstname:"",
+    lastname:"",
+    email:"",
+    password:"",
+    confirmpassword:""
   });
 
   // error state
@@ -72,7 +78,15 @@ function LoginForm() {
     // setting global error to null on input change
     setError({ ...error, global: null });
   }, [formData]);
+  useEffect(() => {
+   if (loginPage) {
+     setForm(loginForm)
+   }else{
+    setForm(signupForm)
+   }
 
+  }, [loginPage])
+  
   return (
     <div className="Login-form-wrapper-form w-full flex flex-col items-start">
       {error.global && (
@@ -80,33 +94,36 @@ function LoginForm() {
           <p>{error.global}</p>
         </div>
       )}
-      {form.map((field, i) => (
-        <Input
-          key={i}
-          type={field.type}
-          HTMLtype={field.HTMLtype}
-          name={field.name}
-          label={field.label}
-          subLabel={field.subLabel}
-          required={field.required}
-          placeholder={field.placeholder}
-          error={error[field.name as keyof typeof error]}
-          value={formData[field.name as keyof typeof formData]}
-          onChange={(newValue: string | boolean) => {
-            // setting new value
-            setFormData({ ...formData, [field.name]: newValue });
+      {
+        Form.map((field:any, i: any) => (
+          <Input
+            key={i}
+            type={field.type}
+            HTMLtype={field.HTMLtype}
+            name={field.name}
+            label={field.label}
+            subLabel={field.subLabel}
+            required={field.required}
+            placeholder={field.placeholder}
+            error={error[field.name as keyof typeof error]}
+            value={formData[field.name as keyof typeof formData]}
+            onChange={(newValue: string | boolean) => {
+              // setting new value
+              setFormData({ ...formData, [field.name]: newValue });
+  
+              // checking if value is valid
+              let notValid = field.validation(newValue as string);
+  
+              if (notValid) {
+                setError({ ...error, [field.name]: notValid });
+              } else {
+                setError({ ...error, [field.name]: null });
+              }
+            }}
+          />
+        ))}:
 
-            // checking if value is valid
-            let notValid = field.validation(newValue as string);
-
-            if (notValid) {
-              setError({ ...error, [field.name]: notValid });
-            } else {
-              setError({ ...error, [field.name]: null });
-            }
-          }}
-        />
-      ))}
+      <span onClick={()=>setloginPage((prev)=>!prev) } className='cursor-pointer'>{loginPage ? "Dont have an account ? Sigup":"Already Have an account ? Login" }</span>
       <Button
         type="main"
         className="w-full"
@@ -129,44 +146,5 @@ function LoginForm() {
   );
 }
 
-const form = [
-  {
-    label: "Username:",
-    type: "username",
-    HTMLtype: "username",
-    name: "username",
-    placeholder: "Enter your Username",
-    required: true,
-    validation: (value: string) => {
-      // if username is empty
-      if (!value.length) return "Username is required";
-
-      // if username is invalid
-      if (!validUsername(value)) return "Username is invalid";
-
-      // if valid
-      return null;
-    },
-  },
-  {
-    label: "Password:",
-    HTMLtype: "password",
-    subLabel: "Must contain at least a digit",
-    type: "password",
-    name: "password",
-    placeholder: "Enter your password",
-    required: true,
-    validation: (value: string) => {
-      // if password is empty
-      if (!value.length) return "Password is required";
-
-      // if password is invalid
-      if (!validPassword(value)) return "Password is invalid";
-
-      // if valid
-      return null;
-    },
-  },
-];
 
 export default LoginForm;
