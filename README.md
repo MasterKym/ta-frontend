@@ -1,6 +1,6 @@
 # Frontend for Full-stack tech assessment @WebMastry
 
-Hey there!
+Hey there !!
 
 First things first, let's talk about our git workflow. We have a `main` branch, and a `dev` branch. Those are our main branches. The `dev` branch is always AHEAD or AT THE SAME LEVEL as the `main` branch. Never forget that!
 
