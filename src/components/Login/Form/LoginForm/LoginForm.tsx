@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
 import { loginForm, signupForm } from "./forms";
 import { useNavigate } from "react-router-dom";
-import submitLogin from "utils/api/submitLogin";
-import getProfile from "utils/api/getProfile";
 import { UserModel } from "Models/UserModal";
-
+import { login } from "utils/Actions/AuthAction";
+import { useDispatch } from "react-redux";
 function LoginForm() {
+  const dispatch = useDispatch();
+
   // react router navigation
   const navigate = useNavigate();
 
@@ -40,38 +41,30 @@ function LoginForm() {
   });
 
   // handle on submit
-  const handleSubmit = () => {
+  const handleSubmit = async (e:any) => {
     // setting global error to false
+    e.preventDefault()
+  
     setError({ ...error, global: null });
 
     // setting submitting to true
     setSubmitting(true);
 
     if (error.username || error.password) return setSubmitting(false);
-
-    submitLogin(formData)
-      .then(() => {
-        setSubmitting(false);
-        navigate("/settings");
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        setError({
-          ...error,
-          global: err,
-        });
+    
+    try {
+      dispatch(login(formData))
+      setSubmitting(false);
+      
+    } catch (err:any) {
+      setSubmitting(false);
+      setError({
+        ...error,
+        global: err,
       });
+    }
+
   };
-
-  // on component mount, we will check if the user is already logged in
-  useEffect(() => {
-    const success = () => {
-      // it means the user is already logged in, redirect to /settings!
-      navigate("/settings");
-    };
-
-    getProfile(success, () => {});
-  }, []);
 
   // on formData change
   useEffect(() => {
