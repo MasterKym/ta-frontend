@@ -1,4 +1,4 @@
-export type  AuthActionType =
+export type  AuthActionTypes =
 {
     type:"AUTH_START"
 

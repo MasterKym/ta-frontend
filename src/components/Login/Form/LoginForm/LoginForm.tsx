@@ -2,13 +2,17 @@ import { Button, Input } from "components";
 import { useEffect, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
 import { loginForm, signupForm } from "./forms";
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import { UserModel } from "Models/UserModal";
 import { login } from "utils/Actions/AuthAction";
 import { useDispatch } from "react-redux";
+import { AuthReqPayload } from "utils/types/reqPayload";
+import { useAppSelector } from "utils/hooks";
+import { ToastContainer } from "react-toastify";
 function LoginForm() {
   const dispatch = useDispatch();
-
+  //get loading state
+  const {loading} =useAppSelector((state:any)=>state.authReducer)
   // react router navigation
   const navigate = useNavigate();
 
@@ -20,7 +24,7 @@ function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
 
   // formData state
-  const [formData, setFormData] = useState<UserModel>({
+  const [formData, setFormData] = useState<AuthReqPayload>({
     username:"",
     firstname:"",
     lastname:"",
@@ -117,14 +121,15 @@ function LoginForm() {
         ))}:
 
       <span onClick={()=>setloginPage((prev)=>!prev) } className='cursor-pointer'>{loginPage ? "Dont have an account ? Sigup":"Already Have an account ? Login" }</span>
+      <ToastContainer />
       <Button
         type="main"
         className="w-full"
-        disabled={submitting}
+        disabled={loading}
         size="md"
         onClick={handleSubmit}
       >
-        {!submitting ? (
+        {!loading? (
           <>
             Submit
             <span>

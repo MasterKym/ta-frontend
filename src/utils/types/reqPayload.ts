@@ -1,4 +1,4 @@
-export interface UserModel {
+export interface AuthReqPayload {
     username:string,
     firstname:string,
     lastname:string,
