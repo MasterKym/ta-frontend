@@ -1,9 +1,10 @@
 @import "breakpoints";
 @import "vars";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 // Nunito Sans font
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
-
 // Poppins font
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -22,7 +23,8 @@ html {
 body {
 	position: relative;
 	overflow-x: hidden;
-	background-color: #fff;
+	background-color: #F5F5F5!important;
+	font-family: "Plus Jakarta Sans";
 	color: var(--gray-900);
 }
 
@@ -55,6 +57,23 @@ img {
 		object-fit: cover;
 	}
 }
+.alert-enter {
+	opacity: 0;
+	transform: scale(0.9);
+  }
+  .alert-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+	transition: all 400ms cubic-bezier(.47,2,.41,1.5);
+  }
+  .alert-exit {
+	opacity: 1;
+  }
+  .alert-exit-active {
+	opacity: 0;
+	transform: scale(0.9);
+	transition: all 400ms cubic-bezier(.47,2,.41,1.5);
+  }
 
 @import "flex";
 @import "position";
