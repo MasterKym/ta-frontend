@@ -1,3 +1,4 @@
+import { authResPayload } from 'utils/types/resPayload';
 export type  AuthActionTypes =
 {
     type:"AUTH_START"
@@ -10,5 +11,23 @@ export type  AuthActionTypes =
 }|
 {
     type:"AUTH_FAIL"
+
+}|
+{
+    type:"LOGOUT"
+
+}
+export type userActionTypes =
+{
+    type:"UPDATE_START"
+
+}|
+{
+    type:"UPDATE_SUCCESS",
+    data:authResPayload
+
+}|
+{
+    type:"UPDATE_FAIL"
 
 }

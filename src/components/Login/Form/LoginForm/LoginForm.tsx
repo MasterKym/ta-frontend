@@ -4,7 +4,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { loginForm, signupForm } from "./forms";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import { login } from "utils/Actions/AuthAction";
+import { login, signup } from "utils/Actions/AuthAction";
 import { useDispatch } from "react-redux";
 import { AuthReqPayload } from "utils/types/reqPayload";
 import { useAppSelector } from "utils/hooks";
@@ -55,18 +55,32 @@ function LoginForm() {
     setSubmitting(true);
 
     if (error.username || error.password) return setSubmitting(false);
-    
-    try {
-      dispatch(login(formData))
-      setSubmitting(false);
-      
-    } catch (err:any) {
-      setSubmitting(false);
-      setError({
-        ...error,
-        global: err,
-      });
+    if (loginPage) {
+      try {
+        dispatch(login(formData))
+        setSubmitting(false);
+        
+      } catch (err:any) {
+        setSubmitting(false);
+        setError({
+          ...error,
+          global: err,
+        });
+      }
+    }else{
+      try {
+        dispatch(signup(formData))
+        setSubmitting(false);
+        
+      } catch (err:any) {
+        setSubmitting(false);
+        setError({
+          ...error,
+          global: err,
+        });
+      }
     }
+   
 
   };
 

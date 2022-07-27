@@ -5,5 +5,7 @@ export interface AuthReqPayload {
     email:string,
     password:string,
     dateOfBirth?:string,
-    confirmpassword?:string
+    confirmpassword?:string,
+    phoneNumber?:string,
+    currentUserId?:string
 }

@@ -1,5 +1,7 @@
 import { Login, Settings } from "components";
 import { Navigate, Route, Routes } from "react-router-dom";
+import 'antd/dist/antd.min.css'
+import "@fontsource/plus-jakarta-sans";
 import "styles/globals.scss";
 import 'bootstrap/dist/css/bootstrap.css';
 import { useSelector } from "react-redux";
@@ -9,7 +11,7 @@ function App() {
   const user =useAppSelector((state:any)=>state.authReducer.authData)
  
   return (
-    <div className="App w-full h-full">
+    <div className="App ">
       <Routes>
         <Route path="/"  element ={user? <Navigate to ='../settings' />: <Login/>} />
         <Route path="/settings" element={user? <Settings/>: <Navigate to="../"/>} />

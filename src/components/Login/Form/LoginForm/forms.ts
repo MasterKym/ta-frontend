@@ -77,7 +77,7 @@ export const loginForm = [
       label: "Email",
       HTMLtype: "email",
       type: "email",
-      name: "lastname",
+      name: "email",
       placeholder: "Enter your email",
       required: true,
     },
@@ -104,7 +104,7 @@ export const loginForm = [
       label: "Confirm Password:",
       HTMLtype: "password",
       type: "password",
-      name: "Confirmpassword",
+      name: "confirmpassword",
       placeholder: "Enter your password",
       required: true,
       validation: (value: string) => {
