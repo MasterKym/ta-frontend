@@ -14,7 +14,6 @@ interface AccountProps {
 
 export const Account: React.FC<AccountProps> = ({}) => {
     const [form] = Form.useForm();
-    const [usernameErr, setusernameErr] = useState<string|null>(null)
     const [Err, setErr] = useState<{name:string,msg:null |string}>({
         name:"",
         msg:null
@@ -22,7 +21,7 @@ export const Account: React.FC<AccountProps> = ({}) => {
     const {user}=useAppSelector((state:any)=>state.authReducer.authData)
     const {loading}=useAppSelector((state:any)=>state.authReducer)
     const dispatch =useDispatch();
-    const [phone, setphone] = useState<string|null>(null)
+    const [phone, setphone] = useState<string|null>(user.phoneNumber)
     const onFormLayoutChange=()=>{
 
     }
@@ -113,7 +112,7 @@ export const Account: React.FC<AccountProps> = ({}) => {
                         </Form.Item>
                         <Form.Item label="Password">
                                     <Input.Password name="password" value={formData.password} onChange={handleChange}  placeholder="input placeholder" />
-                                    <div>At least one number</div>
+                                    <div className='text-xs text-[#722252] font-bold mt-1 ml-1'>At least one digit</div>
                         {
                             Err.name==="password" &&<div className='text-red-400'>{Err.msg}</div>
                         }

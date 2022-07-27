@@ -19,8 +19,13 @@ export const updateUser:any = (formData:AuthReqPayload,userId:string)=>async(dis
             progress: undefined,
             });
          dispatch({type:"UPDATE_SUCCESS",data:data})
-    } catch (error) {
-        toast.error('Server Error !', {
+    } catch (error:any) {
+        var errMsg
+        if (error.response.data.message) 
+            errMsg=error.response.data.message
+        else
+            errMsg=error.response.data
+        toast.error(errMsg, {
             position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: false,
