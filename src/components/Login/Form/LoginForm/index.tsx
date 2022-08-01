@@ -1,10 +1,10 @@
-import { Button, Input } from "components";
-import { useEffect, useState } from "react";
-import { BsArrowRightShort } from "react-icons/bs";
-import { validUsername, validPassword } from "utils/client/inputValidation";
-import { useNavigate } from "react-router-dom";
-import submitLogin from "utils/api/submitLogin";
-import getProfile from "utils/api/getProfile";
+import { Button, Input } from 'components';
+import { useEffect, useState } from 'react';
+import { BsArrowRightShort } from 'react-icons/bs';
+import { validUsername, validPassword } from 'utils/client/inputValidation';
+import { useNavigate } from 'react-router-dom';
+import submitLogin from 'utils/api/submitLogin';
+import getProfile from 'utils/api/getProfile';
 
 function LoginForm() {
   // react router navigation
@@ -18,8 +18,8 @@ function LoginForm() {
     username: string;
     password: string;
   }>({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   // error state
@@ -46,7 +46,7 @@ function LoginForm() {
     submitLogin(formData)
       .then(() => {
         setSubmitting(false);
-        navigate("/settings");
+        navigate('/settings');
       })
       .catch((err) => {
         setSubmitting(false);
@@ -59,19 +59,19 @@ function LoginForm() {
 
   // on component mount, we will check if the user is already logged in
   useEffect(() => {
-    const success = () => {
+    const success = (data: any) => {
       // it means the user is already logged in, redirect to /settings!
-      navigate("/settings");
+      navigate('/settings');
     };
 
-    getProfile(success, () => {});
-  }, []);
+    getProfile(success, (error: any) => {});
+  }, [navigate]);
 
   // on formData change
   useEffect(() => {
     // setting global error to null on input change
     setError({ ...error, global: null });
-  }, [formData]);
+  }, [formData, error]);
 
   return (
     <div className="Login-form-wrapper-form w-full flex flex-col items-start">
@@ -122,7 +122,7 @@ function LoginForm() {
             </span>
           </>
         ) : (
-          "Submitting..."
+          'Submitting...'
         )}
       </Button>
     </div>
@@ -131,37 +131,37 @@ function LoginForm() {
 
 const form = [
   {
-    label: "Username:",
-    type: "username",
-    HTMLtype: "username",
-    name: "username",
-    placeholder: "Enter your Username",
+    label: 'Username:',
+    type: 'username',
+    HTMLtype: 'username',
+    name: 'username',
+    placeholder: 'Enter your Username',
     required: true,
     validation: (value: string) => {
       // if username is empty
-      if (!value.length) return "Username is required";
+      if (!value.length) return 'Username is required';
 
       // if username is invalid
-      if (!validUsername(value)) return "Username is invalid";
+      if (!validUsername(value)) return 'Username is invalid';
 
       // if valid
       return null;
     },
   },
   {
-    label: "Password:",
-    HTMLtype: "password",
-    subLabel: "Must contain at least a digit",
-    type: "password",
-    name: "password",
-    placeholder: "Enter your password",
+    label: 'Password:',
+    HTMLtype: 'password',
+    subLabel: 'Must contain at least a digit',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
     required: true,
     validation: (value: string) => {
       // if password is empty
-      if (!value.length) return "Password is required";
+      if (!value.length) return 'Password is required';
 
       // if password is invalid
-      if (!validPassword(value)) return "Password is invalid";
+      if (!validPassword(value)) return 'Password is invalid';
 
       // if valid
       return null;
