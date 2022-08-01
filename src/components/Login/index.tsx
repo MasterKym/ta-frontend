@@ -1,5 +1,5 @@
-import Illustration from "./Illustration";
-import Form from "./Form";
+import Illustration from './Illustration';
+import Form from './Form';
 
 function Login() {
   return (

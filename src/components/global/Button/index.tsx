@@ -3,9 +3,9 @@ interface ButtonProps {
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   disabled?: boolean;
-  type?: "main" | "main-secondary" | "dark" | "dark-secondary";
-  HTMLtype?: "button" | "submit" | "reset";
-  size?: "sm" | "md" | "lg";
+  type?: 'main' | 'main-secondary' | 'dark' | 'dark-secondary';
+  HTMLtype?: 'button' | 'submit' | 'reset';
+  size?: 'sm' | 'md' | 'lg';
   style?: React.CSSProperties;
 }
 
@@ -22,7 +22,7 @@ function Button({
   return (
     <button
       className={`button ${type} size-${
-        size ? size : "md"
+        size ? size : 'md'
       } relative flex items-center justify-center ${className}`}
       onClick={onClick}
       disabled={disabled}
