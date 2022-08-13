@@ -1,0 +1,58 @@
+@import "../../../styles/breakpoints.scss";
+
+
+.FormHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.Form {
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid rgb(228, 222, 222);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.b {
+	display: inline-block;
+    font-size: 30px;
+}
+
+.submit2{
+    margin-left: auto;
+    margin-top: 25px;
+}
+
+.InputGroup {
+    display: inline;
+}
+
+label {
+    display: block;
+}
+
+.react-tel-input .form-control {
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .Form {
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+@media only screen and (min-width: 600px) {
+    .InputGroup {
+        display: flex;
+        gap: 15px;
+    }
+    .submit2 {
+        margin-left: 0px;
+        margin-top: 25px;
+    }
+}

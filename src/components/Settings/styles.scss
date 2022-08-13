@@ -1,0 +1,11 @@
+@import "../../styles/breakpoints.scss";
+
+.Container {
+    width: 100%;
+    min-height: 100vh;
+	display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+
+}

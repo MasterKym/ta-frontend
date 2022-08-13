@@ -1,0 +1,57 @@
+@import "../../../styles/breakpoints.scss";
+
+
+@media only screen and (max-width: 600px) {
+    .Sidebar {
+      display: none;
+    }
+  }
+
+.menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid var(--main-light-800);
+  width: 100%;
+  z-index: 55;
+}
+
+.show {
+  display: block !important;
+}
+
+ul {
+  padding: 5px;
+}
+
+li{
+  color: var(--main-light-800);
+  margin: 15px 10px;
+  font-weight: 650;
+  padding: 7px 20px;
+  list-style: none;
+}
+
+li:hover{
+  background-color: var(--main-light-200);
+  border-radius: 10px;
+}
+
+.Row {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  align-items: center;
+  font-size: 30px;
+}
+
+.b {
+  display: inline-block;
+  font-size: 40px;
+}
+
+.Topbar {
+  position: relative;
+}

@@ -1,0 +1,8 @@
+@import "../../../styles/breakpoints.scss";
+
+
+@media only screen and (max-width: 600px) {
+    .Sidebar {
+      display: none;
+    }
+  }
