@@ -5,7 +5,7 @@ import TopBar from "components/Settings/TopBar"
 
 function Sidebar() {
   return (
-    <div>
+    <div className="Form">
       <TopBar/>
         <div className="FormHeader">
           <b className="b">Account</b>

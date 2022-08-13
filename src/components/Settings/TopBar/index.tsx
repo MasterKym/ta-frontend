@@ -3,6 +3,8 @@ import {FiMenu} from 'react-icons/fi';
 import {GrClose} from 'react-icons/gr';
 import { useState } from "react";
 
+import Menu from "components/Settings/Menu"
+
 function TopBar() {
   const [show, setShow] = useState(false);
 
@@ -19,20 +21,7 @@ function TopBar() {
           </div>
         </div>
         <div className={`menu ${show ? "show":""}`}>
-          <ul>
-            <li>
-              Account
-            </li>
-            <li>
-              Notification
-            </li>
-            <li>
-              Secuti
-            </li>
-            <li>
-              Delete
-            </li>
-          </ul>
+          <Menu/>
         </div>
       </div>
     </div>

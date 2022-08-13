@@ -11,10 +11,11 @@
 
 .Form {
     width: 100%;
-    max-width: 400px;
-    border: 2px solid rgb(228, 222, 222);
+    max-width: 700px;
+    border: 1px solid var(--gray-200);
     padding: 30px;
     border-radius: 20px;
+    background-color: white;
 }
 
 .b {
@@ -39,10 +40,16 @@ label {
     width: 100%;
 }
 
+Input {
+    margin-bottom: 10px;
+}
+
 @media only screen and (max-width: 600px) {
     .Form {
       border: none;
       border-radius: 0;
+      padding: 0px 20px;
+      max-width: 95%;
     }
   }
 
