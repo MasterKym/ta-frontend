@@ -29,8 +29,10 @@ function Settings() {
   return (
     // YOUR CODE SHOULD BE HERE!
     <div className="Container">
-      <Sidebar/>
-      <Form/>
+      <div className="SubContainer">
+        <Sidebar/>
+        <Form/>
+      </div>
     </div>
   );
 }

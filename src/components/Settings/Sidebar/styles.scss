@@ -1,7 +1,12 @@
 @import "../../../styles/breakpoints.scss";
 
-.b {
-  font-size: 300;
+.b12 {
+  font-size: 30px !important;
+}
+
+.Sidebar {
+  margin-top: 50px;
+  width: 240px;
 }
 
 @media only screen and (max-width: 600px) {
