@@ -80,9 +80,6 @@
 
 
 .react-tel-input.w-full {
-	.special-label {
-		display: none;
-	}
 	input {
 		width: 100%;
 		padding: 10px 14px 12px 58px;
@@ -134,4 +131,8 @@
 			box-shadow: none!important;
 		}
 	}
+}
+
+.special-label {
+	display: none !important;
 }

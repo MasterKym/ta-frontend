@@ -33,7 +33,7 @@ function Settings() {
         <Sidebar/>
         <Form/>
       </div>
-    </div>
+    </div>  
   );
 }
 
