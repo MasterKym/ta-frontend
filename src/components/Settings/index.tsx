@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import getProfile from "utils/api/getProfile";
+import Sidebar from './Sidebar'
+import Form from './Form'
+import "./styles.scss";
 
 function Settings() {
   // react router navigate
@@ -25,7 +28,12 @@ function Settings() {
 
   return (
     // YOUR CODE SHOULD BE HERE!
-    <div>Settings</div>
+    <div className="Container">
+      <div className="SubContainer">
+        <Sidebar/>
+        <Form/>
+      </div>
+    </div>  
   );
 }
 

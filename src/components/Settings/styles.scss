@@ -1,0 +1,31 @@
+@import "../../styles/breakpoints.scss";
+
+.Container {
+    width: 100%;
+    min-height: 100vh;
+	display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.SubContainer {
+    display: flex;
+    gap: 30px;
+}
+
+body{
+    background-color: var(--gray-50) !important;
+    min-width: 400px;
+}
+
+
+@media only screen and (max-width: 800px) {
+    body {
+        background-color: white !important;
+    }
+    .SubContainer{
+        width: 100%;
+        justify-content: center;
+    }
+  }

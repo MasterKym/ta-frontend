@@ -19,3 +19,31 @@ export const validPassword = (password: string): boolean => {
   const re = /^(?=.*\d).{8,}$/;
   return re.test(password);
 };
+
+export const validName = (name: string): Boolean => {
+  if (name.length < 3 || name.length > 10) {
+    return false;
+  }
+
+  const re = /^[a-zA-Z]+$/;
+  console.log(re.test(name));
+  return re.test(name);
+}
+
+
+export const validEmail = (email: string): Boolean => {
+  if (email.length < 8 || email.length > 20) {
+    return false;
+  }
+
+  const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return re.test(email);
+}
+
+export const validPhone = (email: string): Boolean => {
+  if (email.length < 9 || email.length > 10) {
+    return false;
+  }
+
+  return true
+}
